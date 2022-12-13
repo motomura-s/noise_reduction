@@ -218,47 +218,48 @@ sample files:
     05_ambeint.m4a
     06_office.m4a
 ------------------------------------'''
-samples = ['01_counting.m4a','02_wind_and_cars.m4a','03_truck.m4a','04_voices.m4a','05_ambeint.m4a','06_office.m4a']
+if __name__ == "main":
+    samples = ['01_counting.m4a','02_wind_and_cars.m4a','03_truck.m4a','04_voices.m4a','05_ambeint.m4a','06_office.m4a']
 
-for s in samples:
-    # reading a file
-    filename = s
-    y, sr = read_file(filename)
+    for s in samples:
+        # reading a file
+        filename = s
+        y, sr = read_file(filename)
 
-    # reducing noise using db power
-    y_reduced_power = reduce_noise_power(y, sr)
-    y_reduced_centroid_s = reduce_noise_centroid_s(y, sr)
-    y_reduced_centroid_mb = reduce_noise_centroid_mb(y, sr)
-    y_reduced_mfcc_up = reduce_noise_mfcc_up(y, sr)
-    y_reduced_mfcc_down = reduce_noise_mfcc_down(y, sr)
-    y_reduced_median = reduce_noise_median(y, sr)
+        # reducing noise using db power
+        y_reduced_power = reduce_noise_power(y, sr)
+        y_reduced_centroid_s = reduce_noise_centroid_s(y, sr)
+        y_reduced_centroid_mb = reduce_noise_centroid_mb(y, sr)
+        y_reduced_mfcc_up = reduce_noise_mfcc_up(y, sr)
+        y_reduced_mfcc_down = reduce_noise_mfcc_down(y, sr)
+        y_reduced_median = reduce_noise_median(y, sr)
 
-    # trimming silences
-    y_reduced_power, time_trimmed = trim_silence(y_reduced_power)
-    # print (time_trimmed)
+        # trimming silences
+        y_reduced_power, time_trimmed = trim_silence(y_reduced_power)
+        # print (time_trimmed)
 
-    y_reduced_centroid_s, time_trimmed = trim_silence(y_reduced_centroid_s)
-    # print (time_trimmed)
+        y_reduced_centroid_s, time_trimmed = trim_silence(y_reduced_centroid_s)
+        # print (time_trimmed)
 
-    y_reduced_power, time_trimmed = trim_silence(y_reduced_power)
-    # print (time_trimmed)
+        y_reduced_power, time_trimmed = trim_silence(y_reduced_power)
+        # print (time_trimmed)
 
-    y_reduced_centroid_mb, time_trimmed = trim_silence(y_reduced_centroid_mb)
-    # print (time_trimmed)
+        y_reduced_centroid_mb, time_trimmed = trim_silence(y_reduced_centroid_mb)
+        # print (time_trimmed)
 
-    y_reduced_mfcc_up, time_trimmed = trim_silence(y_reduced_mfcc_up)
-    # print (time_trimmed)
+        y_reduced_mfcc_up, time_trimmed = trim_silence(y_reduced_mfcc_up)
+        # print (time_trimmed)
 
-    y_reduced_mfcc_down, time_trimmed = trim_silence(y_reduced_mfcc_down)
-    # print (time_trimmed)
+        y_reduced_mfcc_down, time_trimmed = trim_silence(y_reduced_mfcc_down)
+        # print (time_trimmed)
 
-    y_reduced_median, time_trimmed = trim_silence(y_reduced_median)
+        y_reduced_median, time_trimmed = trim_silence(y_reduced_median)
 
-    # generating output file [1]
-    output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_power, sr, '_pwr')
-    output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_centroid_s, sr, '_ctr_s')
-    output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_centroid_mb, sr, '_ctr_mb')
-    output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_mfcc_up, sr, '_mfcc_up')
-    output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_mfcc_down, sr, '_mfcc_down')
-    output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_median, sr, '_median')
-    output_file('01_samples_trimmed_noise_reduced/' ,filename, y, sr, '_org')
+        # generating output file [1]
+        output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_power, sr, '_pwr')
+        output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_centroid_s, sr, '_ctr_s')
+        output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_centroid_mb, sr, '_ctr_mb')
+        output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_mfcc_up, sr, '_mfcc_up')
+        output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_mfcc_down, sr, '_mfcc_down')
+        output_file('01_samples_trimmed_noise_reduced/' ,filename, y_reduced_median, sr, '_median')
+        output_file('01_samples_trimmed_noise_reduced/' ,filename, y, sr, '_org')
